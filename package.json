@@ -1,0 +1,63 @@
+{
+  "name": "evb",
+  "version": "0.0.1",
+  "description": "Electron Vue Boilerplate",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "cd vue && start npm run serve && cd .. && start electron .",
+    "gui": "cd vue && start npm run serve",
+    "app": "start electron .",
+    "build": "npm run build:win32 && npm run build:win64",
+    "build:32": "electron-builder --win --ia32",
+    "build:64": "electron-builder --win --x64"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opdev1004/evb.git"
+  },
+  "build": {
+    "productName": "App",
+    "appId": "developer.app",
+    "compression": "normal",
+    "asar": true,
+    "protocols": {
+      "name": "App",
+      "schemes": [
+        "app"
+      ]
+    },
+    "win": {
+      "target": [
+        "zip",
+        "portable"
+      ],
+      "icon": "./assets/icons/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "portable": {
+      "artifactName": "app.${ext}",
+      "useZip": true
+    },
+    "files": [
+      "!vue",
+      "!dist"
+    ],
+    "directories": {
+      "buildResources": "./assets/",
+      "output": "./dist/"
+    }
+  },
+  "author": "Victor Chanil Park",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/opdev1004/evb/issues"
+  },
+  "homepage": "https://github.com/opdev1004/evb#readme",
+  "devDependencies": {
+    "electron": "^15.1.2",
+    "electron-builder": "^22.13.1"
+  }
+}
